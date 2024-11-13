@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive Meta Tag -->
+    <title>My Favorite Places in Chicago</title>
+    <!-- Font for consistent style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Reset and custom styles -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Google Maps script with defer to ensure loading after content -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEg4isTn3OXH6FvwSPClGT2X9H_6euR7I&callback=initMap" defer></script> <!-- Replace YOUR_API_KEY -->
+    <!-- Custom script with defer -->
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" title="Introduction">Introduction</a></li>
+                <li><a href="resume.html" title="Resume">Resume</a></li>
+                <li><a href="anime.html" title="Favorite Anime">Favorite Anime</a></li>
+                <li><a href="map.html" title="Map">Map</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>My Favorite Places in Chicago</h1>
+            <div id="map" style="width: 100%; height: 500px;"></div>
+            <noscript>
+                <p>Map functionality requires JavaScript to be enabled. Please enable JavaScript in your browser.</p>
+            </noscript>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Leonel Garcia. All rights reserved.</p>
+    </footer>
+
+    <!-- Fallback initialization script if needed -->
+    <script>
+        function initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: { lat: 17.143173, lng: -48.9213901 }, // Default center coordinates
+    });
+
+    const favoritePlaces = [
+        {
+            position: { lat: 19.3120076, lng: 56.1631251 },
+            title: "Japan",
+            description: "Known for its unique culture, beautiful landscapes, and advanced technology."
+        },
+        {
+            position: { lat: 23.1909679, lng: -113.2796933 },
+            title: "Mexico",
+            description: "Rich in culture, food, and historic landmarks like pyramids."
+        },
+        {
+            position: { lat: 45.9884439, lng: -2.6999611 },
+            title: "Paris",
+            description: "The city of light known for its iconic Eiffel Tower and rich history."
+        }
+    ];
+
+    favoritePlaces.forEach(place => {
+        const marker = new google.maps.Marker({
+            position: place.position,
+            map,
+            title: place.title,
+        });
+
+        const infoWindow = new google.maps.InfoWindow({
+            content: `
+			<h3>${place.title}</h3> ,
+			<p>${place.description}</p>`,
+        });
+
+        marker.addListener("click", () => {
+            infoWindow.open(map, marker);
+        });
+    });
+}
+
+    </script>
+</body>
+</html>
