@@ -91,17 +91,32 @@ div {
 /*slider*/
 .slider {
   position: relative;
+  width: 100%;
   max-width: 600px;
   margin: auto;
-  text-align: center;
-}
-
-.slides {
-  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff; /* Ensure text and images have a proper background */
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .slide {
   display: none;
+  text-align: center; /* Center-align text and images */
+}
+
+.slide img {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.slide p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
 }
 
 .slide.active {
@@ -113,12 +128,12 @@ button.next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #333;
-  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 10px;
   cursor: pointer;
-  z-index: 1000;
+  border-radius: 5px;
 }
 
 button.prev {
@@ -127,4 +142,9 @@ button.prev {
 
 button.next {
   right: 10px;
+}
+
+button.prev:hover,
+button.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
